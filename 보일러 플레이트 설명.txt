@@ -1,3 +1,5 @@
+node -v 설치 및 버전 확인
+
 mkdir boiler-plate
 cd  boiler-plate
 npm init
@@ -6,13 +8,16 @@ npm install express --save
 
 index.js작성 후
 npm run start
-
+------------------------------
 몽고db 회원가입
 clusters 생성
 user생성
 dbname은 sandbox 밑에 클러스트 이름
 network access -> add ip address (  includes your current IP address) 해야함.
 비밀번호 특수 문자 넣지 말기!
+
+
+
 
 mongoose다운로드
 npm install mongoose --save
@@ -38,7 +43,7 @@ git ssh 사이트 Generating a new SSH key
 입력
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 
-eval $(ssh-agent -s)
+eval "$(ssh-agent -s)"
 
 프라이빗 키 더하기
 ssh-add ~/.ssh/id_rsa
@@ -81,7 +86,7 @@ npm run start
 postman프로그램에서 작성
 new request
 post:http://localhost:3000/register
-body탭-raw클릭-
+body탭-raw클릭-json선택
 {
     "name": "ezenbhy",
     "email": "ezenbhy@gmail.com",
@@ -108,4 +113,23 @@ npm run backend로 실행
 ----
 비밀정보를 보호하기
 
+config/dev.js
+config/prod.js
+config/key.js
+index.js변경
+.gitignore파일 변경
 
+git add .
+git sataus
+git commit -m "비밀정보보호"
+git push
+
+-----------
+Bcrypt비크립트로 비밀번호 암호화 하기
+npm install bcrypt --save
+
+------
+로그인 기능
+npm install jsonwebtoken --save
+
+12번

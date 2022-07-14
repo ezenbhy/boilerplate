@@ -1,41 +1,33 @@
-const express = require('express');
-const app = express();
-const port = 3000;
-const bodyParser = require('body-parser');
+//1
+// const express = require('express')
+// const app = express()
+// const port = 3000
 
-const config = require('./config/key');
+// app.get('/', (req, res) => {
+//   res.send('Hello World!')
+// })
 
-const {User} = require('./models/User');
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`)
+// })
 
-//application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: true}));
+//2
+const express = require('express')
+const app = express()
+const port = 5500
 
-//application/json
-app.use(bodyParser.json());
-
-const mongoose = require('mongoose');
-mongoose.connect(config.MONGO_URI,{
-    useNewUrlParser:true, useUnifiedTopology:true, useCreateIndex:true, useFindAndModify:false
+const mongoose = require('mongoose')
+mongoose.connect('mongodb+srv://ezenbhy:a12345751225@cluster0.r4vtx.mongodb.net/Cluster0?retryWrites=true&w=majority',{
+  useNewUrlParser:true, useUnifiedTopology:true, useCreateIndex:true, useFindAndModify:false
 })
 .then(() => console.log('MongoDB Connected...'))
 .catch(err => console.log(err))
- 
+
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.post('/register',(req, res) => {
-  //회원가입할때 필요한 정보들을 client에서 가져오면
-  //그것들을 데이터 베이스에 넣어준다.
-  const user = new User(req.body)
-
-  user.save((err, userInfo) => {
-    if(err) return res.json({success: false, err})
-    return res.status(200).json({
-      success: true
-    })
-  })
-})
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Example app listening on port ${port}`)
 })
